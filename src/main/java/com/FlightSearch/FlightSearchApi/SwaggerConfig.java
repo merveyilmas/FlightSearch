@@ -15,7 +15,8 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.FlightSearch.FlightSearchApi"))
+                //.apis(RequestHandlerSelectors.basePackage("com.FlightSearch.FlightSearchApi"))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
     }
