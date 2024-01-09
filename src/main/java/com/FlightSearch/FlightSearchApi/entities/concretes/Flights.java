@@ -21,12 +21,6 @@ public class Flights {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    /*@Column(name = "departureAirport", nullable = false)
-    private String departureAirport;
-
-    @Column(name = "arrivalAirport", nullable = false)
-    private String arrivalAirport;*/
-
     @ManyToOne
     @JoinColumn(name = "departureAirport_id", nullable = false)
     private Airports departureAirport;

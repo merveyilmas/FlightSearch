@@ -38,4 +38,6 @@ public interface FlightsService {
     );
 
     DataResult<List<Flights>> getAllFligths();
+
+    public void fetchMockDataAndSave();
 }

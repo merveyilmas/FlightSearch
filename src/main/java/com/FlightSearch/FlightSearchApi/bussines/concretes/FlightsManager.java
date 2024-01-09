@@ -8,7 +8,9 @@ import com.FlightSearch.FlightSearchApi.repositories.abstracts.FlightsRepository
 import com.FlightSearch.FlightSearchApi.utilities.results.DataResult;
 import com.FlightSearch.FlightSearchApi.utilities.results.Result;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ public class FlightsManager implements FlightsService {
 
     private final FlightsRepository flightsRepository;
     private final AirportsRepository airportsRepository;
+
+    private final String MOCK_API_URL = "http://localhost:8080/MockDataController/getMockData";
 
     @Override
     public DataResult<List<Flights>> getFlight(String departureAirport, String arrivalAirport, LocalDateTime departureDateTime, LocalDateTime returnDateTime) {
@@ -35,16 +39,16 @@ public class FlightsManager implements FlightsService {
         Flights flights = this.flightsRepository.findByDepartureAirportAndArrivalAirportAndDepartureDateTimeAndReturnDateTime(departure, arrival, departureDateTime, returnDateTime);
 
 
-        if(flights == null){
+        if (flights == null) {
             flightsInfo.add(flights);
             return new DataResult<>(flightsInfo, false, "Flight not found!");
-        }else {
+        } else {
 
             flightsInfo.add(flights);
 
-            if(returnDateTime == null){
+            if (returnDateTime == null) {
                 return new DataResult<>(flightsInfo, true, "One way flight listed.");
-            }else{
+            } else {
                 Flights returnFlights = new Flights();
                 returnFlights.setId(flights.getId());
                 returnFlights.setDepartureAirport(flights.getArrivalAirport());
@@ -66,17 +70,14 @@ public class FlightsManager implements FlightsService {
     @Override
     public Result deleteFlight(String departureAirport, String arrivalAirport, LocalDateTime departureDateTime, LocalDateTime returnDateTime) {
 
-        Airports departure = new Airports();
-        Airports arrival = new Airports();
-
-        departure = this.airportsRepository.findByCity(departureAirport);
-        arrival = this.airportsRepository.findByCity(arrivalAirport);
+        Airports departure = this.airportsRepository.findByCity(departureAirport);
+        Airports arrival = this.airportsRepository.findByCity(arrivalAirport);
 
         Flights flights = this.flightsRepository.findByDepartureAirportAndArrivalAirportAndDepartureDateTimeAndReturnDateTime(departure, arrival, departureDateTime, returnDateTime);
 
-        if(flights == null){
+        if (flights == null) {
             return new Result(false, "Flight not found!");
-        }else {
+        } else {
             this.flightsRepository.deleteById(flights.getId());
             return new Result(true, "Flight deleted.");
         }
@@ -90,11 +91,8 @@ public class FlightsManager implements FlightsService {
         System.out.println("arrivalAirport");
         System.out.println(arrivalAirport);
 
-        Airports departure = new Airports();
-        Airports arrival = new Airports();
-
-        departure = this.airportsRepository.findByCity(departureAirport);
-        arrival = this.airportsRepository.findByCity(arrivalAirport);
+        Airports departure = this.airportsRepository.findByCity(departureAirport);
+        Airports arrival = this.airportsRepository.findByCity(arrivalAirport);
 
         System.out.println("departure");
         System.out.println(departure);
@@ -134,5 +132,24 @@ public class FlightsManager implements FlightsService {
     @Override
     public DataResult<List<Flights>> getAllFligths() {
         return new DataResult<>(this.flightsRepository.findAll(), true, "Listed all flights.");
+    }
+
+    //@Scheduled(cron = "0 55 11 * * *")
+    @Scheduled(cron = "0 0 0 * * *") // Her gün 00:00:00'de çalışacak şekilde ayarlanmıştır
+    @Override
+    public void fetchMockDataAndSave() {
+
+        // get data from Mock API
+        RestTemplate restTemplate = new RestTemplate();
+        Flights mockFlight = restTemplate.getForObject(MOCK_API_URL, Flights.class);
+
+        System.out.println("mockFlight");
+        System.out.println(mockFlight);
+
+        // save mock data to db
+        if (mockFlight != null) {
+            this.flightsRepository.save(mockFlight);
+        }
+
     }
 }
