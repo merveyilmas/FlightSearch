@@ -1,0 +1,14 @@
+{
+  "id": 0,
+  "departureAirport": {
+    "id": 4,
+    "city": "IST"
+  },
+  "arrivalAirport": {
+    "id": 1,
+    "city": "JFK"
+  },
+  "departureDateTime": "2024-01-06T12:00:00",
+  "returnDateTime": "2024-01-09T15:00:00",
+  "price": 5000
+}

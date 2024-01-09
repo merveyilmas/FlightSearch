@@ -43,11 +43,11 @@ public class AirportsManager implements AirportsService {
     }
 
     @Override
-    public Result saveNewAirport(int id, String city) {
+    public Result saveNewAirport(String city) {
 
         Airports airport = new Airports();
         airport.setCity(city);
-        airport.setId(id);
+
 
         this.airportsRepository.save(airport);
 

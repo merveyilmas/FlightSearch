@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "message": "Listed all airports.",
+  "data": [
+    {
+      "id": 2,
+      "city": "ATL"
+    },
+    {
+      "id": 4,
+      "city": "IST"
+    },
+    {
+      "id": 1,
+      "city": "JFK"
+    },
+    {
+      "id": 6,
+      "city": "KCL"
+    },
+    {
+      "id": 3,
+      "city": "SFO"
+    },
+    {
+      "id": 5,
+      "city": "ZNG"
+    }
+  ]
+}

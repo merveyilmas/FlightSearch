@@ -14,7 +14,7 @@ public interface AirportsService {
 
     Result deleteAirport(String city);
 
-    Result saveNewAirport(int id, String city);
+    Result saveNewAirport(String city);
 
     Result updateAirport(String oldCity, String newCity);
 

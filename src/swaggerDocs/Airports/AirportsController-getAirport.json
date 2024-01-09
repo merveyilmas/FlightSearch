@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "message": "Airport listed.",
+  "data": {
+    "id": 5,
+    "city": "ZNG"
+  }
+}

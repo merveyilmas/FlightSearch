@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "message": "One way flight listed.",
+  "data": [
+    {
+      "id": 2,
+      "departureAirport": {
+        "id": 3,
+        "city": "SFO"
+      },
+      "arrivalAirport": {
+        "id": 1,
+        "city": "JFK"
+      },
+      "departureDateTime": "2024-01-08T12:00:00",
+      "returnDateTime": null,
+      "price": 1222
+    }
+  ]
+}

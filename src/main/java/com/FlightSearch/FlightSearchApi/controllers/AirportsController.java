@@ -29,9 +29,9 @@ public class AirportsController {
     }
 
     @PostMapping("/saveNewAirport")
-    public Result saveNewAirport(@RequestParam int id, @RequestParam String city) {
+    public Result saveNewAirport(@RequestParam String city) {
 
-      return this.airportsService.saveNewAirport(id, city);
+      return this.airportsService.saveNewAirport(city);
     }
 
     @PostMapping("/updateAirport")

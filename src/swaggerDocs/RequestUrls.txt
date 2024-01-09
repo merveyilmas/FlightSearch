@@ -1,0 +1,25 @@
+http://localhost:8080/FlightsController/updateFlight?id=5&updatedDepartureAirport=ATL&updatedArrivalAirport=IST&updatedDepartureDateTime=2024-01-10T12%3A00%3A00&updatedReturnDateTime=2024-02-10T12%3A00%3A00&updatedPrice=222
+
+http://localhost:8080/FlightsController/saveNewFlight?departureAirport=ATL&arrivalAirport=IST&departureDateTime=2024-01-13T12%3A00%3A00&returnDateTime=2024-01-15T12%3A00%3A00&price=456
+
+http://localhost:8080/FlightsController/deleteFlight?departureAirport=ATL&arrivalAirport=IST&departureDateTime=2024-01-13T12%3A00%3A00&returnDateTime=2024-01-15T12%3A00%3A00
+
+Two way flight;
+http://localhost:8080/FlightsController/getFlight?departureAirport=ATL&arrivalAirport=IST&departureDateTime=2024-01-10T12%3A00%3A00&returnDateTime=2024-02-10T12%3A00%3A00
+
+One way flight;
+http://localhost:8080/FlightsController/getFlight?departureAirport=SFO&arrivalAirport=JFK&departureDateTime=2024-01-08T12%3A00%3A00
+
+http://localhost:8080/FlightsController/getAllFligths
+
+http://localhost:8080/AirportsController/updateAirport?oldCity=IST&newCity=AST
+
+http://localhost:8080/AirportsController/saveNewAirport?city=ASK
+
+http://localhost:8080/AirportsController/deleteAirport?city=AST
+
+http://localhost:8080/AirportsController/getAllAirports
+
+http://localhost:8080/AirportsController/getAirport?city=ASK
+
+http://localhost:8080/MockDataController/getMockData

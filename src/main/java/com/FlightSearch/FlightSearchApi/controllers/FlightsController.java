@@ -28,7 +28,7 @@ public class FlightsController {
     }
 
     @PostMapping("/deleteFlight")
-    public Result deleteFlight(@RequestParam String departureAirport, @RequestParam String arrivalAirport, @RequestParam LocalDateTime departureDateTime, @RequestParam LocalDateTime returnDateTime) {
+    public Result deleteFlight(@RequestParam String departureAirport, @RequestParam String arrivalAirport, @RequestParam LocalDateTime departureDateTime, @Nullable @RequestParam LocalDateTime returnDateTime) {
 
         return this.flightsService.deleteFlight(departureAirport, arrivalAirport, departureDateTime, returnDateTime);
     }
