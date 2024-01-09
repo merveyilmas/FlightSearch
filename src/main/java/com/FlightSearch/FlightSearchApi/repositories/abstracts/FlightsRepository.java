@@ -1,5 +1,6 @@
 package com.FlightSearch.FlightSearchApi.repositories.abstracts;
 
+import com.FlightSearch.FlightSearchApi.entities.concretes.Airports;
 import com.FlightSearch.FlightSearchApi.entities.concretes.Flights;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,12 +13,14 @@ import java.time.LocalDateTime;
 public interface FlightsRepository extends JpaRepository<Flights, Integer> {
 
     Flights findByDepartureAirportAndArrivalAirportAndDepartureDateTimeAndReturnDateTime(
-            String departureAirport,
-            String arrivalAirport,
+            Airports departureAirport,
+            Airports arrivalAirport,
             LocalDateTime departureDateTime,
             LocalDateTime returnDateTime
     );
 
-    //@Query(value = "delete from flights where id = :id", nativeQuery = true)
-    //int deleteHwProfileBySoftCode(@Param("softCode") String softCode);
+    Flights findById(int id);
+
+    //@Query(value = "delete from flight where id = :id", nativeQuery = true)
+    //int deleteFlight(@Param("flight") String flight);
 }

@@ -1,5 +1,6 @@
 package com.FlightSearch.FlightSearchApi.bussines.abstracts;
 
+import com.FlightSearch.FlightSearchApi.entities.concretes.Airports;
 import com.FlightSearch.FlightSearchApi.entities.concretes.Flights;
 import com.FlightSearch.FlightSearchApi.utilities.results.DataResult;
 import com.FlightSearch.FlightSearchApi.utilities.results.Result;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface FlightsService {
 
-    DataResult<Flights> getFlight(
+    DataResult<List<Flights>> getFlight(
             String departureAirport,
             String arrivalAirport,
             LocalDateTime departureDateTime,
@@ -27,10 +28,14 @@ public interface FlightsService {
                         LocalDateTime returnDateTime,
                         int price);
 
-    Result updateFlight(String departureAirport,
-                        String arrivalAirport,
-                        LocalDateTime departureDateTime,
-                        LocalDateTime returnDateTime);
+    Result updateFlight(
+            int id,
+            String updatedDepartureAirport,
+            String updatedArrivalAirport,
+            LocalDateTime updatedDepartureDateTime,
+            LocalDateTime updatedReturnDateTime,
+            int updatedPrice
+    );
 
     DataResult<List<Flights>> getAllFligths();
 }

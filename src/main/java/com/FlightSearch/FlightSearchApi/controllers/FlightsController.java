@@ -21,7 +21,7 @@ public class FlightsController {
     private FlightsService flightsService;
 
     @GetMapping("/getFlight")
-    public DataResult<Flights> getFlight(@RequestParam String departureAirport, @RequestParam String arrivalAirport, @RequestParam LocalDateTime departureDateTime, @RequestParam @Nullable LocalDateTime returnDateTime) {
+    public DataResult<List<Flights>> getFlight(@RequestParam String departureAirport, @RequestParam String arrivalAirport, @RequestParam LocalDateTime departureDateTime, @RequestParam @Nullable LocalDateTime returnDateTime) {
     //public DataResult<Flights> getFlight( String departureAirport,  String arrivalAirport,  LocalDateTime departureDateTime,  LocalDateTime returnDateTime) {
 
       return this.flightsService.getFlight(departureAirport, arrivalAirport, departureDateTime, returnDateTime);
@@ -34,14 +34,13 @@ public class FlightsController {
     }
 
     @PostMapping("/saveNewFlight")
-    public Result saveNewFlight(@RequestParam String departureAirport, @RequestParam String arrivalAirport, @RequestParam LocalDateTime departureDateTime, @RequestParam LocalDateTime returnDateTime, int price) {
-
+    public Result saveNewFlight(@RequestParam String departureAirport, @RequestParam String arrivalAirport, @RequestParam LocalDateTime departureDateTime, @RequestParam @Nullable LocalDateTime returnDateTime, int price) {
        return this.flightsService.saveNewFlight(departureAirport, arrivalAirport, departureDateTime, returnDateTime, price);
     }
 
     @PostMapping("/updateFlight")
-    public Result updateFlight(@RequestParam String departureAirport, @RequestParam String arrivalAirport, @RequestParam LocalDateTime departureDateTime, @RequestParam LocalDateTime returnDateTime) {
-        return null;
+    public Result updateFlight(@RequestParam int id, @RequestParam String updatedDepartureAirport, @RequestParam String updatedArrivalAirport, @RequestParam LocalDateTime updatedDepartureDateTime, @RequestParam LocalDateTime updatedReturnDateTime, @RequestParam int updatedPrice) {
+        return this.flightsService.updateFlight(id, updatedDepartureAirport, updatedArrivalAirport, updatedDepartureDateTime, updatedReturnDateTime, updatedPrice);
     }
 
     @GetMapping("/getAllFligths")
